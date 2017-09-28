@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 第三方
     'rest_framework',
+    # 'gunicorn',
     #自己
     'users',
     'kindle',
@@ -81,27 +82,30 @@ WSGI_APPLICATION = 'kinde_drf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'nihongo_drf',
-#         'USER': 'root',  #root
-#         'PASSWORD': 'laia2333',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
-#     },
-# }
-
+# mysql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db1',
-        'USER': 'postgres',
+        'USER': 'meng',  #root
         'PASSWORD': 'laia2333',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+        'HOST': '123.206.220.149',
+        'PORT': '3306',
+    },
 }
+
+
+# postgresql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'db1',
+#         'USER': 'postgres',
+#         'PASSWORD': 'laia2333',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 
 # Password validation
@@ -141,3 +145,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}
